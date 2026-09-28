@@ -3,7 +3,7 @@ import { GALLERY_CATEGORIES } from '../config/constants.js';
 import GalleryImage from '../models/GalleryImage.js';
 import ApiError from '../utils/ApiError.js';
 import { sendSuccess } from '../utils/apiResponse.js';
-import { removeUploadedFile, resolveImage } from '../utils/files.js';
+import { removeUploadedFileIfUnused, resolveImage } from '../utils/files.js';
 
 function pickFields(req) {
   const { imageUrl, ...fields } = matchedData(req, { locations: ['body'] });
@@ -34,7 +34,7 @@ export async function updateGalleryImage(req, res) {
   item.set(pickFields(req));
   await item.save();
 
-  if (previousImage !== item.image) await removeUploadedFile(previousImage);
+  if (previousImage !== item.image) await removeUploadedFileIfUnused(previousImage);
   sendSuccess(res, { message: 'Gallery image updated', data: item });
 }
 
@@ -42,6 +42,6 @@ export async function updateGalleryImage(req, res) {
 export async function deleteGalleryImage(req, res) {
   const item = await GalleryImage.findByIdAndDelete(req.params.id);
   if (!item) throw ApiError.notFound('Gallery image not found');
-  await removeUploadedFile(item.image);
+  await removeUploadedFileIfUnused(item.image);
   sendSuccess(res, { message: 'Gallery image deleted', data: { id: item.id } });
 }

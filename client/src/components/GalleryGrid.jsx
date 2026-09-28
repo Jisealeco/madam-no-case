@@ -31,7 +31,11 @@ export default function GalleryGrid({ images }) {
 
   return (
     <>
-      <div className="columns-2 gap-3 sm:gap-5 lg:columns-3">
+      <div
+        className={`gap-3 sm:gap-5 ${
+          images.length === 1 ? 'mx-auto max-w-2xl columns-1' : images.length === 2 ? 'mx-auto max-w-4xl columns-2' : 'columns-2 lg:columns-3'
+        }`}
+      >
         {images.map((img, i) => (
           <button
             key={img._id}

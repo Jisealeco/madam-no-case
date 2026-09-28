@@ -3,7 +3,7 @@ import { PRODUCT_AVAILABILITY, PRODUCT_CATEGORIES } from '../config/constants.js
 import Product from '../models/Product.js';
 import ApiError from '../utils/ApiError.js';
 import { sendSuccess } from '../utils/apiResponse.js';
-import { removeUploadedFile, resolveImage } from '../utils/files.js';
+import { removeUploadedFileIfUnused, resolveImage } from '../utils/files.js';
 
 function pickFields(req) {
   const { imageUrl, ...fields } = matchedData(req, { locations: ['body'] });
@@ -70,7 +70,7 @@ export async function updateProduct(req, res) {
   product.set(pickFields(req));
   await product.save();
 
-  if (previousImage !== product.image) await removeUploadedFile(previousImage);
+  if (previousImage !== product.image) await removeUploadedFileIfUnused(previousImage);
   sendSuccess(res, { message: 'Product updated', data: product });
 }
 
@@ -78,6 +78,6 @@ export async function updateProduct(req, res) {
 export async function deleteProduct(req, res) {
   const product = await Product.findByIdAndDelete(req.params.id);
   if (!product) throw ApiError.notFound('Product not found');
-  await removeUploadedFile(product.image);
+  await removeUploadedFileIfUnused(product.image);
   sendSuccess(res, { message: 'Product deleted', data: { id: product.id } });
 }

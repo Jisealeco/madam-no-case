@@ -2,7 +2,7 @@ import { matchedData } from 'express-validator';
 import Service from '../models/Service.js';
 import ApiError from '../utils/ApiError.js';
 import { sendSuccess } from '../utils/apiResponse.js';
-import { removeUploadedFile, resolveImage } from '../utils/files.js';
+import { removeUploadedFileIfUnused, resolveImage } from '../utils/files.js';
 
 function pickFields(req) {
   const { imageUrl, ...fields } = matchedData(req, { locations: ['body'] });
@@ -41,7 +41,7 @@ export async function updateService(req, res) {
   service.set(pickFields(req));
   await service.save();
 
-  if (previousImage !== service.image) await removeUploadedFile(previousImage);
+  if (previousImage !== service.image) await removeUploadedFileIfUnused(previousImage);
   sendSuccess(res, { message: 'Service updated', data: service });
 }
 
@@ -49,6 +49,6 @@ export async function updateService(req, res) {
 export async function deleteService(req, res) {
   const service = await Service.findByIdAndDelete(req.params.id);
   if (!service) throw ApiError.notFound('Service not found');
-  await removeUploadedFile(service.image);
+  await removeUploadedFileIfUnused(service.image);
   sendSuccess(res, { message: 'Service deleted', data: { id: service.id } });
 }

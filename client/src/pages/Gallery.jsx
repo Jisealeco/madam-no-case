@@ -18,7 +18,7 @@ export default function Gallery() {
       <PageHero
         eyebrow="Our work"
         title="Gallery"
-        intro="Décor we have styled and pieces from our store, from engagement displays to the finishing touches for the groom."
+        intro="Engagement displays and event décor we have styled for our clients' ceremonies."
       />
       <section className="bg-paper py-14 lg:py-20">
         <div className="container-x">
