@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  --font-script: 'Pinyon Script', 'Brush Script MT', cursive;
+
+  --color-wine-50: #fbf2f5;
+  --color-wine-100: #f3dde5;
+  --color-wine-200: #e2b3c4;
+  --color-wine-500: #8e2d55;
+  --color-wine-600: #7a1f47;
+  --color-wine-700: #64163a;
+  --color-wine-800: #4a0d27;
+  --color-wine-900: #360819;
+  --color-wine-950: #230410;
+
+  --color-gold-100: #f7ecd0;
+  --color-gold-200: #efdca9;
+  --color-gold-300: #e4c67f;
+  --color-gold-400: #d9b562;
+  --color-gold-500: #c49a45;
+  --color-gold-600: #a67e30;
+  --color-gold-700: #7f5f22;
+
+  --color-ivory-50: #fdfaf4;
+  --color-ivory-100: #f8f1e3;
+  --color-ivory-200: #efe2c8;
+  --color-ivory-300: #e3d0ac;
+
+  --color-ink: #2a1a20;
+  --color-muted: #6f5a61;
+
+  --shadow-soft: 0 18px 50px -24px rgb(54 8 25 / 0.35);
+  --shadow-card: 0 1px 0 rgb(196 154 69 / 0.25), 0 20px 40px -28px rgb(54 8 25 / 0.45);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[0.95rem] font-medium tracking-wide whitespace-nowrap transition duration-300 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory-50 font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-wine-800;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { @apply bg-gold-300 text-wine-900; }
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  img { max-width: 100%; }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-[0.72rem] font-medium tracking-[0.32em] text-gold-600 uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-gold-500;
+  }
+  .on-dark .eyebrow { @apply text-gold-300; }
+  .on-dark .eyebrow::before { @apply bg-gold-400; }
+
+  .btn-primary {
+    @apply btn bg-wine-800 text-ivory-50 shadow-soft hover:-translate-y-0.5 hover:bg-wine-700;
+  }
+  .btn-gold {
+    @apply btn bg-gradient-to-b from-gold-300 to-gold-500 text-wine-900 shadow-soft hover:-translate-y-0.5 hover:from-gold-200 hover:to-gold-400;
+  }
+  .btn-whatsapp {
+    @apply btn bg-[#1f8f4e] text-white shadow-soft hover:-translate-y-0.5 hover:bg-[#1a7c43];
+  }
+  .btn-outline {
+    @apply btn border border-wine-800/25 bg-transparent text-wine-800 hover:border-wine-800 hover:bg-wine-800 hover:text-ivory-50;
+  }
+  .btn-outline-light {
+    @apply btn border border-gold-300/50 text-ivory-50 hover:border-gold-300 hover:bg-gold-300 hover:text-wine-900;
+  }
+
+  .gold-text {
+    @apply bg-gradient-to-b from-gold-300 via-gold-400 to-gold-600 bg-clip-text text-transparent;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-wine-800;
+  }
+  .field {
+    @apply w-full rounded-xl border border-ivory-300 bg-white px-4 py-3 text-base text-ink placeholder:text-muted/60 transition focus:border-gold-500 focus:ring-4 focus:ring-gold-300/30 focus:outline-none;
+  }
+  .field[aria-invalid='true'] {
+    @apply border-wine-500 ring-4 ring-wine-100;
+  }
+  .select-chevron {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a67e30' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-size: 1.1rem;
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+  }
+  .field-error {
+    @apply mt-1.5 text-sm text-wine-600;
+  }
+
+  /* Soft gold lattice for burgundy panels, echoing woven Asooke. */
+  .bg-lattice {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M22 0L44 22L22 44L0 22Z' fill='none' stroke='%23d9b562' stroke-opacity='0.09' stroke-width='1'/%3E%3Ccircle cx='22' cy='22' r='1.4' fill='%23d9b562' fill-opacity='0.16'/%3E%3C/svg%3E");
+  }
+  .bg-paper {
+    background-image:
+      radial-gradient(1200px 500px at 85% -10%, rgb(228 198 127 / 0.22), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgb(142 45 85 / 0.07), transparent 60%);
+  }
+
+  /* Arched frame used for hero and feature photography. */
+  .arch {
+    border-radius: 999px 999px 1.75rem 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
