@@ -11,7 +11,7 @@ export const business = {
   phone: PHONE,
   phoneDisplay: '+234 803 225 2023',
   phoneHref: `tel:${PHONE}`,
-  email: 'akinijsetoyin720@gmail.com',
+  email: 'akinjisetoyin720@gmail.com',
   address: 'No 43 Off Akure Road, Lover Boy, Ondo Town, Ondo State',
   addressLines: ['No 43 Off Akure Road', 'Lover Boy, Ondo Town', 'Ondo State'],
   mapsQuery: 'Akure Road, Ondo Town, Ondo State, Nigeria',
