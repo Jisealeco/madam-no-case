@@ -1,6 +1,6 @@
 // Single source of truth for the business's contact details.
 // Only this phone number is used anywhere on the site (the one on the printed flyer is outdated).
-const PHONE = '+238032252023';
+const PHONE = '+2348032252023';
 
 export const business = {
   name: 'Madam No Case Ventures',
@@ -9,7 +9,7 @@ export const business = {
   secondaryTagline: 'Quality Products & Excellent Service',
   closingLine: 'Make Your Special Moments More Beautiful with Us',
   phone: PHONE,
-  phoneDisplay: PHONE,
+  phoneDisplay: '+234 803 225 2023',
   phoneHref: `tel:${PHONE}`,
   email: 'akinijsetoyin720@gmail.com',
   address: 'No 43 Off Akure Road, Lover Boy, Ondo Town, Ondo State',

@@ -290,6 +290,6 @@ Send `multipart/form-data` with the file in the `image` field. JPEG, PNG, WebP a
 
 All contact details live in one file, `client/src/lib/business.js`:
 
-* Phone / WhatsApp: **+238032252023** (the number printed on the flyer is outdated and is not used anywhere)
+* Phone / WhatsApp: **+234 803 225 2023** (stored as `+2348032252023`, used for all Call and WhatsApp links)
 * Email: **akinijsetoyin720@gmail.com**
 * Address: **No 43 Off Akure Road, Lover Boy, Ondo Town, Ondo State**

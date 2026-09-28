@@ -93,7 +93,7 @@ check('POST /contact invalid → 422', r.status === 422 && r.json.errors.some((e
 r = await call('POST', '/contact', {
   body: {
     name: 'Smoke Test',
-    phone: '+238032252023',
+    phone: '+2348032252023',
     email: 'smoke.test@example.com',
     serviceNeeded: 'Decorations',
     eventDate: '2026-12-12',
