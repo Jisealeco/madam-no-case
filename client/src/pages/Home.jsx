@@ -5,7 +5,6 @@ import walkingStick from '../assets/images/grooms-walking-stick-gold.jpeg';
 import CtaBand from '../components/CtaBand.jsx';
 import FounderSection from '../components/Founder.jsx';
 import { WhatsAppIcon } from '../components/Icons.jsx';
-import Ornament from '../components/Ornament.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { CardSkeletons, EmptyState } from '../components/States.jsx';
@@ -259,49 +258,6 @@ function FeaturedProducts() {
   );
 }
 
-function GroomSpotlight() {
-  return (
-    <section className="on-dark relative overflow-hidden bg-wine-900 bg-lattice py-20 lg:py-24">
-      <div className="pointer-events-none absolute top-1/2 left-1/4 h-96 w-96 -translate-y-1/2 rounded-full bg-gold-400/15 blur-3xl" />
-      <div className="container-x relative grid items-center gap-12 md:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div className="relative mx-auto w-64 sm:w-72">
-          <div className="absolute -inset-3 rounded-[2.5rem] border border-gold-400/40" aria-hidden="true" />
-          <img
-            src={walkingStick}
-            alt="Ornate gold-headed walking stick with a black shaft"
-            loading="lazy"
-            className="aspect-[3/4.4] w-full rounded-[2rem] object-cover object-top shadow-2xl"
-          />
-        </div>
-        <div className="text-center md:text-left">
-          <p className="eyebrow">For the groom</p>
-          <h2 className="mt-4 text-[2.3rem] font-semibold text-ivory-50 sm:text-5xl">
-            The Groom's <span className="gold-text italic">Walking Stick</span>
-          </h2>
-          <Ornament light className="mt-6 justify-center md:justify-start" />
-          <p className="mt-6 max-w-xl text-lg text-ivory-100/80 md:max-w-lg">
-            An ornate gold-headed walking stick: the regal finishing touch the groom carries with pride on his
-            traditional day. Pair it with Asooke, beads and a statement watch from our collection.
-          </p>
-          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
-            <a
-              href={whatsappLink("Hello Madam No Case, is the groom's gold walking stick available?")}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-gold"
-            >
-              <WhatsAppIcon /> Ask about availability
-            </a>
-            <Link to="/products" className="btn-outline-light">
-              See more for him
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function GalleryPreview() {
   const { data } = useApi('/gallery');
   const images = (data || []).slice(0, 9);
@@ -388,7 +344,6 @@ export default function Home() {
       <EngagementFeature />
       <FounderSection />
       <FeaturedProducts />
-      <GroomSpotlight />
       <GalleryPreview />
       <VisitUs />
       <CtaBand />
